@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 2022_01_27_145628) do
     t.text "body"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "answer_id", null: false
+    t.bigint "answer_id"
     t.index ["answer_id"], name: "index_questions_on_answer_id"
   end
 
