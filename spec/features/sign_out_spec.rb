@@ -8,7 +8,7 @@ feature 'User can sign out', %q{
 
   background { sign_in(user) }
 
-  scenario 'Registered user tries to sign in' do
+  scenario 'Registered user tries to sign out' do
     click_on 'Log out'
 
     expect(page).to have_content 'Signed out successfully.'
