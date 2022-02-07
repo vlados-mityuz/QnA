@@ -5,4 +5,10 @@ module FeatureHelpers
     fill_in 'Password', with: user.password
     click_on 'Log in'
   end
+
+  def create_question
+    fill_in 'Title', with: 'Test question'
+    fill_in 'Body', with: 'text text text'
+    click_on 'Ask'
+  end  
 end

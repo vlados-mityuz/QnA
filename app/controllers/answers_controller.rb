@@ -1,27 +1,20 @@
 class AnswersController < ApplicationController
-  before_action :question, only: %i[new create]
-
-  def show
-
-  end
-
-  def new
-    
-  end
+  before_action :find_question, only: %i[create]
 
   def create
     @answer = @question.answers.new(answer_params)
 
     if @answer.save
-      redirect_to @question
+      redirect_to @question, notice: 'Answer was successfully created'
     else
-      render :new
+      @question.reload
+      render "questions/show"
     end
   end
 
   private
 
-  def question
+  def find_question
     @question = Question.find(params[:question_id])
   end
 
@@ -32,6 +25,6 @@ class AnswersController < ApplicationController
   helper_method :answer
 
   def answer_params
-    params.require(:answer).permit(:body, :question_id)
+    params.require(:answer).permit(:body)
   end
 end
