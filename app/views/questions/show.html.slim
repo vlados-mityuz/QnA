@@ -1,7 +1,8 @@
 h1= @question.title
 p= @question.body
 
-= render @question.answers
+- if current_user&.author_of?(@question)
+  p = link_to 'Delete question', question_path(@question), method: :delete
 
 = render 'shared/errors', resource: @answer
 
@@ -9,3 +10,11 @@ p= @question.body
   = f.label :body, 'Your answer'
   = f.text_area :body
   = f.submit 'Answer'
+
+  - @question.answers.each do |answer|
+    li= answer.body
+
+- @question.answers.each do |answer|
+  li= answer.body
+  - if current_user&.author_of?(answer)
+    p = link_to 'Delete answer', answer_path(answer), 'turbo_method': :delete
