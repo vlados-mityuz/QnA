@@ -11,9 +11,6 @@ p= @question.body
   = f.text_area :body
   = f.submit 'Answer'
 
-  - @question.answers.each do |answer|
-    li= answer.body
-
 - @question.answers.each do |answer|
   li= answer.body
   - if current_user&.author_of?(answer)
